@@ -38,7 +38,7 @@ This Python project allows you to download Spotify playlists directly to your co
 
 ## Disclaimer
 
-*   Using this script to download copyrighted music may violate Spotify's terms of service. Use it responsibly.
+*   Using this script to download copyrighted music may violate Spotify's terms of service. Use it responsibly. Some songs may return 403 error and will not be downloaded.
 
 ## Contributing
 
