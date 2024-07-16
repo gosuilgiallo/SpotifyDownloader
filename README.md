@@ -1,11 +1,10 @@
 # Spotify Playlist Downloader
 
-This Python project allows you to download Spotify playlists directly to your computer in MP3 format, while preserving the original track metadata.
+This Python project allows you to download Spotify playlists directly to your computer in MP3 format.
 
 ## Key Features
 
 *   **Playlist Download:** Download entire Spotify playlists by providing the link.
-*   **Full Metadata:** Retains track metadata (artist, title, album, year, etc.) using the Spotify API.
 *   **Custom File Names:** MP3 files are saved in the format "Artist - Song Title.mp3".
 *   **Graphical Interface:** Simple and intuitive user interface with a progress bar.
 *   **Error Handling:** Includes error handling for network issues, file not found, etc.
