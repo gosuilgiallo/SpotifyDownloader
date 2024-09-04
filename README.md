@@ -1,31 +1,31 @@
-# Spotify Playlist Downloader
+# Spotify Content Downloader
 
-This Python project allows you to download Spotify playlists directly to your computer in MP3 format.
+This Python project allows you to download Spotify content directly to your computer in MP3 format.
 
 ## Key Features
 
-*   **Playlist Download:** Download entire Spotify playlists by providing the link.
-*   **Custom File Names:** MP3 files are saved in the format "Artist - Song Title.mp3".
+*   **Download:** Download entire Spotify playlists, albums or singles by providing the link.
+*   **Custom File Names:** Files are saved in the format "Artist - Song Title.mp3".
 *   **Graphical Interface:** Simple and intuitive user interface with a progress bar.
 *   **Error Handling:** Includes error handling for network issues, file not found, etc.
 
 ## Requirements
 
 *   Python 3.x
-*   Libraries: `spotipy`, `yt-dlp`, `eyed3`
+*   Libraries: `spotipy`, `yt-dlp`, `eyed3`, `ffmpeg`
 *   Spotify API Credentials: Get your `client_id` and `client_secret` by registering your application on [Spotify for Developers](https://developer.spotify.com/dashboard/applications).
 
 ## Installation
 
-1.  **Clone the repository:** `git clone https://github.com/gosuilgiallo/spotify-playlist-downloader.git`
-2.  **Install dependencies:** `pip install -r requirements.txt`
+1.  **Clone the repository:** ```git clone https://github.com/gosuilgiallo/spotify-playlist-downloader.git```
+2.  **Install dependencies:** ```pip install -r requirements.txt```
 3.  **Enter Spotify credentials:**
     *   Open the file `downloader.py`.
     *   Replace `YOUR_CLIENT_ID` and `YOUR_CLIENT_SECRET` with your credentials.
 
 ## Usage
 
-1.  **Run the program:** `python main.py`
+1.  **Run the program:** ```python main.py```
 2.  **Enter the Spotify playlist link** in the provided text box.
 3.  **Click the "Download" button.**
 4.  **Choose the destination folder** to save the MP3 files.
