@@ -36,9 +36,9 @@ This Python project allows you to download Spotify content directly to your comp
 ## Usage
 
 1.  **Run the program:** ```python main.py```
-2.  **Enter the Spotify playlist link** in the provided text box.
+2.  **Enter the Spotify link** in the provided text box.
 3.  **Click the "Download" button.**
-4.  **Choose the destination folder** to save the MP3 files.
+4.  **Choose the destination folder** to save the files.
 5.  **Wait for the download to complete.** The progress bar will show you the progress.
 
 ## Customization (Optional)
