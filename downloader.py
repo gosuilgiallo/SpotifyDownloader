@@ -7,26 +7,42 @@ import tkinter as tk
 from tkinter import ttk
 import time
 
-def download_spotify_playlist(playlist_link, download_path):
+def download_spotify_content(spotify_link, download_path):
     """
-    Downloads a Spotify playlist and its tracks to a folder named after the playlist.
+    Downloads Spotify content (playlist, album, or track) to a folder named after the content.
     """
 
     # Spotify Authentication
     client_credentials_manager = SpotifyClientCredentials(client_id='YOUR_CLIENT_ID', client_secret='YOUR_CLIENT_SECRET')
     sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
-    # Get playlist information
-    playlist_id = playlist_link.split("/")[-1].split("?")[0]
-    playlist = sp.playlist(playlist_id)
+    # Identify content type
+    content_id = spotify_link.split("/")[-1].split("?")[0]
+    if "playlist" in spotify_link:
+        content = sp.playlist(content_id)
+        tracks = content['tracks']['items']
+        content_name = content['name']
+        is_playlist = True
+    elif "album" in spotify_link:
+        content = sp.album(content_id)
+        tracks = content['tracks']['items']
+        content_name = content['name']
+        is_playlist = False
+    elif "track" in spotify_link:
+        content = sp.track(content_id)
+        tracks = [{'track': content}]
+        content_name = content['name']
+        is_playlist = False
+    else:
+        raise ValueError("Unsupported Spotify link provided")
 
-    # Create playlist folder
-    playlist_folder = os.path.join(download_path, playlist['name'])
-    os.makedirs(playlist_folder, exist_ok=True)
+    # Create content folder
+    content_folder = os.path.join(download_path, content_name)
+    os.makedirs(content_folder, exist_ok=True)
 
     # Create download window
     download_window = tk.Toplevel()
-    download_window.title(f"Downloading {playlist['name']}")
+    download_window.title(f"Downloading {content_name}")
     download_window.configure(bg="white")
 
     # Download status label
@@ -39,27 +55,31 @@ def download_spotify_playlist(playlist_link, download_path):
 
     # Download tracks
     failed_tracks = []
-    total_tracks = len(playlist['tracks']['items'])
+    total_tracks = len(tracks)
     progress_bar['maximum'] = total_tracks
 
     start_time = time.time()  # Start time of the download
 
-    for i, item in enumerate(playlist['tracks']['items']):
-        track = item['track']
+    for i, item in enumerate(tracks):
+        if is_playlist:
+            track = item['track']
+        else:
+            track = item  # For albums and single tracks
+
         track_name = track['name']
         artist_name = track['artists'][0]['name']
 
         try:
             ydl_opts = {
                 'format': 'bestaudio/best',
-                'outtmpl': f'{playlist_folder}/{artist_name} - {track_name}.%(ext)s',  # Save in playlist folder
+                'outtmpl': f'{content_folder}/{artist_name} - {track_name}.%(ext)s',  # Save in content folder
                 'noplaylist': True,
             }
             with yt_dlp.YoutubeDL(ydl_opts) as ydl:
                 ydl.download([f"ytsearch1:{track_name} {artist_name}"])
 
             # Update metadata (artist and title only)
-            mp3_file = f"{playlist_folder}/{artist_name} - {track_name}.mp3"
+            mp3_file = f"{content_folder}/{artist_name} - {track_name}.mp3"
             if os.path.exists(mp3_file):
                 audiofile = eyed3.load(mp3_file)
                 audiofile.tag.artist = artist_name
@@ -85,3 +105,6 @@ def download_spotify_playlist(playlist_link, download_path):
             ttk.Label(download_window, text=f"- {track}", background="white").pack()
     else:
         status_label.config(text="Download complete!")
+
+# Example usage:
+# download_spotify_content('your_spotify_playlist_or_album_or_track_link', '/path/to/download/folder')
