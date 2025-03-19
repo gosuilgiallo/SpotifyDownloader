@@ -20,7 +20,7 @@ This Python project allows you to download Spotify content directly to your comp
 1. **Clone the repository:**
 
     ```bash
-    git clone https://github.com/gosuilgiallo/spotify-playlist-downloader.git
+    git clone https://github.com/gosuilgiallo/SpotifyDownloader.git
     ```
 
 2. **Install dependencies:**
