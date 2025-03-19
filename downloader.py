@@ -13,7 +13,7 @@ def download_spotify_content(spotify_link, download_path):
     """
 
     # Spotify Authentication
-    client_credentials_manager = SpotifyClientCredentials(client_id='YOUR_CLIENT_ID', client_secret='YOUR_CLIENT_SECRET')
+    client_credentials_manager = SpotifyClientCredentials(client_id='b8079b1ce61e49cebe5f37db0b737d03', client_secret='c079906b33cf4ad2933e465ec7867171')
     sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
     # Identify content type
@@ -74,6 +74,11 @@ def download_spotify_content(spotify_link, download_path):
                 'format': 'bestaudio/best',
                 'outtmpl': f'{content_folder}/{artist_name} - {track_name}.%(ext)s',  # Save in content folder
                 'noplaylist': True,
+                'postprocessors': [{
+                    'key': 'FFmpegExtractAudio',
+                    'preferredcodec': 'mp3',
+                    'preferredquality': '192',
+                }],
             }
             with yt_dlp.YoutubeDL(ydl_opts) as ydl:
                 ydl.download([f"ytsearch1:{track_name} {artist_name}"])
