@@ -6,14 +6,21 @@ import os
 import tkinter as tk
 from tkinter import ttk
 import time
+import json
 
 def download_spotify_content(spotify_link, download_path):
     """
     Downloads Spotify content (playlist, album, or track) to a folder named after the content.
     """
 
+    # load data from credentials.json
+    # ensure to fill credentials.json with your Spotify API credentials
+    with open('credentials.json', 'r') as f:
+        user_credentials = json.load(f)
+
     # Spotify Authentication
-    client_credentials_manager = SpotifyClientCredentials(client_id='b8079b1ce61e49cebe5f37db0b737d03', client_secret='c079906b33cf4ad2933e465ec7867171')
+    client_credentials_manager = SpotifyClientCredentials(client_id=user_credentials['client_id'],
+                                                          client_secret=user_credentials['client_secret'])
     sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
     # Identify content type
