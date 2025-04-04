@@ -30,12 +30,12 @@ This Python project allows you to download Spotify content directly to your comp
     ```
 
 3.  **Enter Spotify credentials:**
-    *   Open the file `downloader.py`.
+    *   Open the file `credentials.json`.
     *   Replace `YOUR_CLIENT_ID` and `YOUR_CLIENT_SECRET` with your credentials.
 
 ## Usage
 
-1.  **Run the program:** ```python main.py```
+1.  **Run the program:** ```python3 src/main.py```
 2.  **Enter the Spotify link** in the provided text box.
 3.  **Click the "Download" button.**
 4.  **Choose the destination folder** to save the files.
