@@ -13,7 +13,7 @@ def download_spotify_content(spotify_link, download_path):
     """
 
     # Spotify Authentication
-    client_credentials_manager = SpotifyClientCredentials(client_id='INSERT_CLIENT_ID', client_secret='CLIENT_ID_SECRET')
+    client_credentials_manager = SpotifyClientCredentials(client_id='b8079b1ce61e49cebe5f37db0b737d03', client_secret='c079906b33cf4ad2933e465ec7867171')
     sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
     # Identify content type
@@ -111,5 +111,4 @@ def download_spotify_content(spotify_link, download_path):
     else:
         status_label.config(text="Download complete!")
 
-# Example usage:
-# download_spotify_content('your_spotify_playlist_or_album_or_track_link', '/path/to/download/folder')
+
