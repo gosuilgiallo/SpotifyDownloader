@@ -13,14 +13,16 @@ def download_spotify_content(spotify_link, download_path):
     Downloads Spotify content (playlist, album, or track) to a folder named after the content.
     """
 
-    # load data from credentials.json
+   # load data from credentials.json
     # ensure to fill credentials.json with your Spotify API credentials
     with open('credentials.json', 'r') as f:
-        user_credentials = json.load(f)
+        data = json.load(f)
+        spotify_credentials = data.get("spotify_credentials", {})[0]
+        client_id = spotify_credentials.get("client_id")
+        client_secret = spotify_credentials.get("client_secret")
 
     # Spotify Authentication
-    client_credentials_manager = SpotifyClientCredentials(client_id=user_credentials['client_id'],
-                                                          client_secret=user_credentials['client_secret'])
+    client_credentials_manager = SpotifyClientCredentials(client_id, client_secret)
     sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
     # Identify content type
