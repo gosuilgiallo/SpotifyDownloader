@@ -5,7 +5,7 @@ import os
 import time
 from auth.authenticator import SpotifyAuthenticator
 from downloader.spotify_content import SpotifyContentIdentifier
-from ui.download_ui import DownloadUI  # Aggiungi questo import
+from ui.download_ui import DownloadUI
 
 def download_spotify_content(spotify_link, download_path):
     """
